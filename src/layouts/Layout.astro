@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex">
+		<title>Haruka Kimoto Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/reset.css">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: "Geist Mono", "Zen Kaku Gothic New", sans-serif;
+  }
+
+	html,
+  body,
+  h1,
+  h2,
+  h3,
+  p {
+		margin: 0;
+    padding: 0;
+	}
+
+  html {
+    color: #000;
+    background-color: #f2f2f2;
+    font-size: 10px;
+  }
+
+  body {
+    font-size: 1.6rem;
+  }
+</style>

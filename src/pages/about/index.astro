@@ -1,0 +1,78 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="main">
+    <h1 class="page__ttl">ABOUT</h1>
+    <section class="section__wrapper">
+      <h2 class="section__ttl">PROFILE</h2>
+      <div class="section__inner">
+        <table width="100%" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>名前</th>
+            <td>k.haru</td>
+          </tr>
+          <tr>
+            <th>生年月日</th>
+            <td>1995年2月9日</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="section__wrapper">
+      <h2 class="section__ttl">SKILL</h2>
+      <div class="section__inner">
+        <p>テスト</p>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style lang="scss">
+  .main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+
+  .page__ttl {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .section {
+    &__ttl {
+      display: inline-block;
+      padding: 5px 10px;
+      color: #fff;
+      background-color: #000;
+      font-weight: 700;
+    }
+
+    &__inner {
+      padding: 10px;
+      border-style: solid;
+      border-width: 1px 4px 4px 1px;
+      border-color: #000;
+
+      table {
+        tr {
+          display: grid;
+          grid-template-columns: 90px 1fr;
+          align-items: center;
+          margin-bottom: 6px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+</style>
