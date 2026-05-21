@@ -1,8 +1,8 @@
 ---
-const {link, text} = Astro.props;
+const {link, text, disabled} = Astro.props;
 ---
 
-<a href={link} class="button">{text}</a>
+<a href={link} class:list={['button', {disabled: disabled}]}>{text}</a>
 
 <style lang="scss">
   .button {
@@ -18,6 +18,7 @@ const {link, text} = Astro.props;
     }
 
     &.disabled {
+      pointer-events: none;
       background-color: #ccc;
       border-width: 1px;
     }
