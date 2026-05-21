@@ -1,23 +1,22 @@
 ---
+import Button from '../components/button.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main class="main">
-    <div class="main__wrapper">
-      <h1>PORTFOLIO</h1>
+  <div class="main__wrapper">
+    <h1>PORTFOLIO</h1>
 
-      <div class="main__buttons">
-        <a href="">WORKS</a>
-        <a href="/portfolio/about">ABOUT</a>
-      </div>
-
-      <div class="main__contact">
-        <p>お問い合わせなどは、下記メールアドレス宛にお気軽にご連絡ください。</p>
-        <div class="email"><code>haru.k.works@gmail.com</code></div>
-      </div>
+    <div class="main__buttons">
+      <Button link="/portfolio/works" text="WORKS"/>
+      <Button link="/portfolio/about" text="ABOUT"/>
     </div>
-  </main>
+
+    <div class="main__contact">
+      <p>お問い合わせなどは、下記メールアドレス宛にお気軽にご連絡ください。</p>
+      <div class="email"><code>haru.k.works@gmail.com</code></div>
+    </div>
+  </div>
 </Layout>
 
 <style lang="scss">
@@ -47,22 +46,6 @@ import Layout from '../layouts/Layout.astro';
       display: flex;
       justify-content: center;
       gap: 30px;
-
-      a {
-        display: block;
-        padding: 10px;
-        border-style: solid;
-        border-width: 1px 1px 4px 1px;
-        border-color: #000;
-        color: inherit;
-        text-decoration: none;
-        transition: transform .3s;
-
-        &:hover {
-          border-width: 1px;
-          transform: translateY(2px);
-        }
-      }
     }
 
     &__contact {
