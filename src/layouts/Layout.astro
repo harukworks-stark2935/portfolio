@@ -12,7 +12,7 @@ const indexPage = Astro.url.pathname === '/portfolio/';
 		<title>Haruka Kimoto Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/portfolio/reset.css">
 	</head>
 	<body>
@@ -22,10 +22,10 @@ const indexPage = Astro.url.pathname === '/portfolio/';
 	</body>
 </html>
 
-<style>
+<style lang="scss">
   * {
     box-sizing: border-box;
-    font-family: "Geist Mono", "Zen Kaku Gothic New", sans-serif;
+    font-family: "Geist Mono", "Noto Sans JP", sans-serif;
   }
 
 	html,
@@ -46,6 +46,10 @@ const indexPage = Astro.url.pathname === '/portfolio/';
 
   body {
     font-size: 1.6rem;
+
+    @media screen and (max-width: 500px) {
+      font-size: 1.4rem;
+    }
   }
 
   .main {
@@ -56,9 +60,17 @@ const indexPage = Astro.url.pathname === '/portfolio/';
     width: 100%;
     margin: 0 auto;
     padding: 40px 0;
+
+    @media screen and (max-width: 500px) {
+      padding: 40px 20px;
+    }
   }
 
   .main.index {
     height: 100vh;
+
+    @media screen and (max-width: 500px) {
+      padding: 40px 20px;
+    }
   }
 </style>

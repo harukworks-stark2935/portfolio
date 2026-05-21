@@ -1,4 +1,5 @@
 ---
+import TextLinkTop from "../../components/textLinkTop.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
@@ -10,7 +11,7 @@ import Layout from "../../layouts/Layout.astro";
       <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
           <th>名前</th>
-          <td>k.haru</td>
+          <td>k-haru</td>
         </tr>
         <tr>
           <th>生年月日</th>
@@ -21,24 +22,82 @@ import Layout from "../../layouts/Layout.astro";
   </section>
 
   <section class="section__wrapper">
-    <h2 class="section__ttl">SKILL</h2>
+    <h2 class="section__ttl">HISTORY</h2>
     <div class="section__inner">
-      <p>テスト</p>
+      <dl class="history__list">
+        <div class="row">
+          <dt>2013.12 - 2021.6</dt>
+          <dd>
+            <ul class="works-content">
+              <li>自社EC・WEBサイトの更新</li>
+              <li>自社ECサイトへの商品登録</li>
+              <li>作業マニュアルの作成</li>
+            </ul>
+            <div class="works-tools">
+              <p>TOOLS</p>
+              <ul class="badge-list">
+                <li class="badge">HTML</li>
+                <li class="badge">CSS, SCSS/Sass</li>
+                <li class="badge">Javascript</li>
+                <li class="badge">楽天市場</li>
+                <li class="badge">Google Docs</li>
+                <li class="badge">Googleスプレッドシート</li>
+                <li class="badge">Googleスライド</li>
+              </ul>
+            </div>
+          </dd>
+        </div>
+        <div class="row">
+          <dt>2021.7 - 2025.12</dt>
+          <dd>
+            <ul class="works-content">
+              <li>ECサイトの構築 <span class="sm">※コーディングのみ</span></li>
+              <li>LPのコーディング</li>
+              <li>イベントやキャンペーン時の商品ページの更新作業</li>
+            </ul>
+            <div class="works-tools">
+              <p>TOOLS</p>
+              <ul class="badge-list">
+                <li class="badge">HTML</li>
+                <li class="badge">CSS, SCSS/Sass</li>
+                <li class="badge">Javascript</li>
+                <li class="badge">Vue.js/Nuxt.js</li>
+                <li class="badge">Shopify/Liquid</li>
+                <li class="badge">Makeshop</li>
+                <li class="badge">BASE</li>
+                <li class="badge">楽天市場</li>
+                <li class="badge">Yahooショッピング</li>
+              </ul>
+            </div>
+          </dd>
+        </div>
+        <div class="row">
+          <dt>2025.10 -</dt>
+          <dd>
+            <ul class="works-content">
+              <li>WEBサイトの修正や更新</li>
+              <li>LPのコーディング</li>
+              <li>Wordpressのアップデート対応</li>
+            </ul>
+            <div class="works-tools">
+              <p>TOOLS</p>
+              <ul class="badge-list">
+                <li class="badge">HTML</li>
+                <li class="badge">CSS, SCSS/Sass</li>
+                <li class="badge">Javascript</li>
+                <li class="badge">Wordpress</li>
+              </ul>
+            </div>
+          </dd>
+        </div>
+      </dl>
     </div>
   </section>
+
+  <TextLinkTop />
 </Layout>
 
 <style lang="scss">
-  .main {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 860px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 40px 0;
-  }
-
   .page__ttl {
     font-size: 2rem;
     font-weight: 700;
@@ -54,7 +113,7 @@ import Layout from "../../layouts/Layout.astro";
     }
 
     &__inner {
-      padding: 10px;
+      padding: 15px;
       border-style: solid;
       border-width: 1px 4px 4px 1px;
       border-color: #000;
@@ -71,6 +130,99 @@ import Layout from "../../layouts/Layout.astro";
           }
         }
       }
+    }
+  }
+
+  .history {
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-left: 10px;
+
+      .row {
+        position: relative;
+        padding-left: 10px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 1px;
+          height: calc(100% + 30px);
+          background-color: #000;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 5px;
+          left: -5px;
+          display: block;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #000;
+        }
+
+        &:last-child {
+          &::before {
+            height: 100%;
+          }
+        }
+
+        dd {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .sm {
+          font-size: 1.4rem;
+
+          @media screen and (max-width: 600px) {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .works {
+    &-content {
+      padding-left: 1.6em;
+      list-style-type: disc;
+    }
+
+    &-tools {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      p {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 5px;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    font-size: 1.4rem;
+
+    @media screen and (max-width: 500px) {
+      font-size: 1.2rem;
+    }
+
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style-type: none;
     }
   }
 </style>
