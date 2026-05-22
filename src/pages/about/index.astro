@@ -1,10 +1,11 @@
 ---
+import PageTtl from "../../components/page-ttl.astro";
 import TextLinkTop from "../../components/textLinkTop.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout>
-  <h1 class="page__ttl">ABOUT</h1>
+  <PageTtl title="ABOUT" />
   <section class="section__wrapper">
     <h2 class="section__ttl">PROFILE</h2>
     <div class="section__inner">
@@ -99,11 +100,6 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 
 <style lang="scss">
-  .page__ttl {
-    font-size: 2rem;
-    font-weight: 700;
-  }
-
   .section {
     &__ttl {
       display: inline-block;
