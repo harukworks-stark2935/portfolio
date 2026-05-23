@@ -27,8 +27,9 @@ jobs:
           # node-version: 24 # サイトのビルドに使用するNodeのバージョンです。デフォルトは22です。（オプション）
           # package-manager: pnpm@latest # 依存関係のインストールとサイトのビルドに使用するNodeパッケージマネージャーです。ロックファイルに基づいて自動検出されます。（オプション）
           # build-cmd: pnpm run build # サイトをビルドするためのコマンドです。デフォルトでパッケージのbuildスクリプトを実行します。（オプション）
-        # env:
-          # PUBLIC_POKEAPI: 'https://pokeapi.co/api/v2' # 変数の値にはシングルクォートを使用してください。（オプション）
+        env:
+          MICROCMS_DOMAIN: ${{ secrets.MICROCMS_DOMAIN }} # 変数の値にはシングルクォートを使用してください。（オプション）
+          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
 
   deploy:
     needs: build
