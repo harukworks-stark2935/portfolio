@@ -2,6 +2,15 @@
 import PageTtl from "../../components/page-ttl.astro";
 import TextLinkTop from "../../components/textLinkTop.astro";
 import Layout from "../../layouts/Layout.astro";
+
+const apiUrl = import.meta.env.MICROCMS_DOMAIN;
+const apiKey = import.meta.env.MICROCMS_API_KEY;
+
+const response = await fetch(apiUrl+"?orders=publishedAt", {
+  headers: {"Content-Type": "application/json", "X-MICROCMS-API-KEY": apiKey}
+  }).then((res) => res.json());
+
+const items = response.contents;
 ---
 
 <Layout>
@@ -26,72 +35,26 @@ import Layout from "../../layouts/Layout.astro";
     <h2 class="section__ttl">HISTORY</h2>
     <div class="section__inner">
       <dl class="history__list">
-        <div class="row">
-          <dt>2013.12 - 2021.6</dt>
-          <dd>
-            <ul class="works-content">
-              <li>自社EC・WEBサイトの更新</li>
-              <li>自社ECサイトへの商品登録</li>
-              <li>作業マニュアルの作成</li>
-            </ul>
-            <div class="works-tools">
-              <p>TOOLS</p>
-              <ul class="badge-list">
-                <li class="badge">HTML</li>
-                <li class="badge">CSS, SCSS/Sass</li>
-                <li class="badge">Javascript</li>
-                <li class="badge">楽天市場</li>
-                <li class="badge">Google Docs</li>
-                <li class="badge">Googleスプレッドシート</li>
-                <li class="badge">Googleスライド</li>
+        {items.map((item) => (
+          <div class="row">
+            <dt>{item.date}</dt>
+            <dd>
+              <ul class="works-contents">
+                {item.contents.split('\n').map((content) => (
+                  <li>{content}</li>
+                ))}
               </ul>
-            </div>
-          </dd>
-        </div>
-        <div class="row">
-          <dt>2021.7 - 2025.12</dt>
-          <dd>
-            <ul class="works-content">
-              <li>ECサイトの構築 <span class="sm">※コーディングのみ</span></li>
-              <li>LPのコーディング</li>
-              <li>イベントやキャンペーン時の商品ページの更新作業</li>
-            </ul>
-            <div class="works-tools">
-              <p>TOOLS</p>
-              <ul class="badge-list">
-                <li class="badge">HTML</li>
-                <li class="badge">CSS, SCSS/Sass</li>
-                <li class="badge">Javascript</li>
-                <li class="badge">Vue.js/Nuxt.js</li>
-                <li class="badge">Shopify/Liquid</li>
-                <li class="badge">Makeshop</li>
-                <li class="badge">BASE</li>
-                <li class="badge">楽天市場</li>
-                <li class="badge">Yahooショッピング</li>
-                <li class="badge">Git/Github</li>
-              </ul>
-            </div>
-          </dd>
-        </div>
-        <div class="row">
-          <dt>2025.10 -</dt>
-          <dd>
-            <ul class="works-content">
-              <li>WEBサイトの修正や更新</li>
-              <li>LPのコーディング</li>
-              <li>Wordpressのアップデート対応</li>
-            </ul>
-            <div class="works-tools">
-              <p>TOOLS</p>
-              <ul class="badge-list">
-                <li class="badge">HTML</li>
-                <li class="badge">CSS, SCSS/Sass</li>
-                <li class="badge">Javascript</li>
-                <li class="badge">Wordpress</li>
-              </ul>
-            </div>
-          </dd>
-        </div>
+              <div class="works-tools">
+                <p>TOOLS</p>
+                <ul class="badge-list">
+                  {item.tools.split('\n').map((tool) => (
+                    <li class="badge">{tool}</li>
+                  ))}
+                </ul>
+              </div>
+            </dd>
+          </div>
+        ))}
       </dl>
     </div>
   </section>
