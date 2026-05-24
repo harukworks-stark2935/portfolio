@@ -6,7 +6,7 @@ import Layout from "../../layouts/Layout.astro";
 const apiUrl = import.meta.env.MICROCMS_DOMAIN;
 const apiKey = import.meta.env.MICROCMS_API_KEY;
 
-const response = await fetch(apiUrl+"?orders=publishedAt", {
+const response = await fetch(apiUrl+"/about?orders=publishedAt", {
   headers: {"Content-Type": "application/json", "X-MICROCMS-API-KEY": apiKey}
   }).then((res) => res.json());
 
@@ -15,9 +15,10 @@ const items = response.contents;
 
 <Layout>
   <PageTtl title="ABOUT" />
-  <section class="section__wrapper">
+  <section class="section__wrapper" id="profile">
     <h2 class="section__ttl">PROFILE</h2>
     <div class="section__inner">
+      <p>フリーランスのWEBコーダー。<br>コーディング以外にもECサイトへの商品登録も担当している。<br>同じことの繰り返しが嫌いで、プログラミングやツールなどを使って、少ない労力でできないかと考えることが好き。<br>プログラミングはPythonを勉強中だが、色々手出しはしている。<br>個人的な趣味は、音楽を聴いたり、動画を観たり、パズルゲームをやったりするのが好き。</p>
       <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
           <th>名前</th>
@@ -31,7 +32,7 @@ const items = response.contents;
     </div>
   </section>
 
-  <section class="section__wrapper">
+  <section class="section__wrapper" id="history">
     <h2 class="section__ttl">HISTORY</h2>
     <div class="section__inner">
       <dl class="history__list">
@@ -183,6 +184,12 @@ const items = response.contents;
       flex-wrap: wrap;
       gap: 10px;
       list-style-type: none;
+    }
+  }
+
+  #profile {
+    p {
+      margin-bottom: 30px;
     }
   }
 </style>
