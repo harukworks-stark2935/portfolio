@@ -2,8 +2,33 @@
 
 <style lang="scss">
   .textLink__top {
-    display: block;
-    text-align: center;
-    text-decoration: underline;
+    position: relative;
+    margin: 0 auto;
+    padding: 10px;
+    transform: color .3s;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      transform: scale(0, 1);
+      transform-origin: right top;
+      transition: transform .3s;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: #fff;
+
+      &::before {
+        transform-origin: left top;
+        transform: scale(1);
+      }
+    }
   }
 </style>
