@@ -98,11 +98,14 @@ const items = response.contents;
     &__list {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 60px;
       padding-left: 10px;
 
       .row {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
         padding-left: 10px;
 
         &::before {
@@ -112,7 +115,7 @@ const items = response.contents;
           left: 0;
           display: block;
           width: 1px;
-          height: calc(100% + 30px);
+          height: calc(100% + 60px);
           background-color: #000;
         }
 
@@ -152,9 +155,13 @@ const items = response.contents;
   }
 
   .works {
-    &-content {
+    &-contents {
       padding-left: 1.6em;
       list-style-type: disc;
+
+      li {
+        line-height: 180%;
+      }
     }
 
     &-tools {
