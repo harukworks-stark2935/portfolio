@@ -7,6 +7,8 @@ on:
     branches: [ main ]
   # GitHub上のActionsタブからこのワークフローを手動で実行できます。
   workflow_dispatch:
+  repository_dispatch:
+    types: [update]
 
 # このジョブがリポジトリをクローンし、ページデプロイメントを作成することを許可します。
 permissions:
