@@ -8,7 +8,7 @@ on:
   # GitHub上のActionsタブからこのワークフローを手動で実行できます。
   workflow_dispatch:
   repository_dispatch:
-    types: [update]
+    types: [post_update]
 
 # このジョブがリポジトリをクローンし、ページデプロイメントを作成することを許可します。
 permissions:
