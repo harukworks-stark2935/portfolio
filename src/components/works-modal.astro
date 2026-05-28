@@ -1,0 +1,117 @@
+---
+const {title, id, contents, tags} = Astro.props;
+---
+
+<div class="works__modal" data-id={id}>
+  <button type="button" class="modal__close"><span></span><span></span></button>
+  <div class="modal__content">
+    <div class="head">
+      <p class="ttl">{title}</p>
+      <ul class="modal__tags">
+        {tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="desc" set:html={contents}></div>
+  </div>
+</div>
+
+<style lang="scss">
+  .works__modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+    filter: drop-shadow(4px 4px 10px rgba(#000, 0.3));
+    transition: opacity .3s, visibility .3s;
+    z-index: -1;
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      z-index: 99;
+    }
+
+    .modal {
+      &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px;
+        width: 100%;
+        background-color: #f2f2f2;
+
+        .head {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .ttl {
+          padding-left: 10px;
+          border-left: 5px solid #000;
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        .desc {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          line-height: 180%;
+        }
+      }
+
+      &__close {
+        position: fixed;
+        top: -30px;
+        right: 0;
+        display: block;
+        width: 25px;
+        height: 25px;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        span {
+          position: absolute;
+          top: 10px;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: #000;
+
+          &:nth-child(1) {
+            transform: rotate(45deg);
+          }
+
+          &:nth-child(2) {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+
+      &__tags {
+        display: flex;
+        gap: 5px;
+
+        li {
+          padding: 5px 10px;
+          background-color: #dfdfdf;
+          font-size: 1.2rem;
+          line-height: 1;
+        }
+      }
+    }
+  }
+</style>

@@ -1,30 +1,91 @@
 ---
 import PageTtl from "../../components/page-ttl.astro"
 import TextLinkTop from "../../components/textLinkTop.astro"
+import WorksModal from "../../components/works-modal.astro";
 import Layout from "../../layouts/Layout.astro"
+
+const apiUrl = import.meta.env.MICROCMS_DOMAIN;
+const apiKey = import.meta.env.MICROCMS_API_KEY;
+
+const response = await fetch(apiUrl+"/works", {
+  headers: {"Content-Type": "application/json", "X-MICROCMS-API-KEY": apiKey}
+  }).then((res) => res.json());
+
+const items = response.contents;
 ---
 
 <Layout>
   <PageTtl title="WORKS" />
-  <ul class="works__nav">
-    <li><button class="works__item" type="button" disabled>自主制作</button></li>
-    <li><button class="works__item" type="button" disabled>HTML</button></li>
-    <li><button class="works__item" type="button" disabled>Vue.js/Nuxt.js</button></li>
-    <li><button class="works__item" type="button" disabled>Shopify</button></li>
+  <ul class="works__list">
+    {items.map((item) => (
+      <li class="list__item" data-works-id={item.id}>
+        <ul class="item__tags">
+          {item.tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+        <p class="item__name">{item.title}</p>
+      </li>
+    ))}
   </ul>
 
   <TextLinkTop />
+
+  {items.map((item) => (
+    <WorksModal title={item.title} id={item.id} contents={item.contents} tags={item.tags} />
+    <style>
+      .link-icon {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        text-decoration: underline;
+
+        &::after {
+          content: '';
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background-image: url(/portfolio/ico_link.svg);
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
+    </style>
+  ))}
+
+  <div class="works__overlay"></div>
 </Layout>
+
+<script>
+  (function() {
+    const itemContainer = document.querySelector('.works__list');
+    const worksOverlay = document.querySelector('.works__overlay');
+
+    itemContainer?.addEventListener('click', (e) => {
+      const item = e.target?.closest('.list__item');
+      if (!item) return;
+
+      const id = item.dataset.worksId;
+      document.querySelector(`.works__modal[data-id="${id}"]`)?.classList.add('is-open');
+
+      worksOverlay?.classList.add('is-view');
+    });
+  })();
+
+  (function() {
+    const worksOverlay = document.querySelector('.works__overlay');
+
+    document?.addEventListener('click', (e) => {
+      if (e.target?.classList.contains('works__overlay') || e.target?.closest('.modal__close')) {
+        worksOverlay?.classList.remove('is-view');
+        document.querySelector('.works__modal.is-open')?.classList.remove('is-open');
+      }
+    });
+  })();
+</script>
 
 <style lang="scss">
   .works {
-    &__nav {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(auto, calc(100% / 4 - 20px * 3 / 4)));
-      grid-template-rows: 50px;
-      gap: 20px;
-    }
-
     &__item {
       display: flex;
       justify-content: center;
@@ -45,6 +106,65 @@ import Layout from "../../layouts/Layout.astro"
           background-color: #000;
           cursor: pointer;
         }
+      }
+    }
+
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(4, calc(100% / 4 - 20px * 3 / 4));
+      gap: 20px;
+
+      .list__item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 15px;
+        border: 1px solid #000;
+        transition: background-color .3s, color .3s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #000;
+
+          .item__name {
+            color: #fff;
+          }
+        }
+
+        .item {
+          &__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+
+            li {
+              display: inline-flex;
+              align-items: center;
+              padding: 0 10px;
+              background-color: #ddd;
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+
+    &__overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(#000, 0.3);
+      transition: visibility .3s, opacity .3s;
+      z-index: -1;
+
+      &.is-view {
+        visibility: visible;
+        opacity: 1;
+        z-index: 90;
       }
     }
   }

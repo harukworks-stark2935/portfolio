@@ -1,5 +1,6 @@
 ---
 const indexPage = Astro.url.pathname === '/portfolio/';
+const worksPage = Astro.url.pathname === '/portfolio/works';
 ---
 
 <!doctype html>
@@ -16,7 +17,7 @@ const indexPage = Astro.url.pathname === '/portfolio/';
     <link rel="stylesheet" href="/portfolio/reset.css">
 	</head>
 	<body>
-    <main class:list={['main', {index: indexPage}]}>
+    <main class:list={['main', {index: indexPage}, {works: worksPage}]}>
       <slot />
     </main>
 	</body>
@@ -64,13 +65,17 @@ const indexPage = Astro.url.pathname === '/portfolio/';
     @media screen and (max-width: 500px) {
       padding: 40px 20px;
     }
-  }
 
-  .main.index {
-    height: 100vh;
+    &.index {
+      height: 100vh;
 
-    @media screen and (max-width: 500px) {
-      padding: 40px 20px;
+      @media screen and (max-width: 500px) {
+        padding: 40px 20px;
+      }
+    }
+
+    &.works {
+      position: relative;
     }
   }
 </style>
