@@ -34,6 +34,11 @@ const {title, id, contents, tags} = Astro.props;
     transition: opacity .3s, visibility .3s;
     z-index: -1;
 
+    @media screen and (max-width: 1000px) {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+
     &.is-open {
       opacity: 1;
       visibility: visible;
@@ -77,6 +82,10 @@ const {title, id, contents, tags} = Astro.props;
         display: block;
         width: 25px;
         height: 25px;
+
+        @media screen and (max-width: 1000px) {
+          right: 20px;
+        }
 
         &:hover {
           cursor: pointer;

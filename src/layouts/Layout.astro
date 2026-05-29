@@ -76,6 +76,10 @@ const worksPage = Astro.url.pathname === '/portfolio/works';
 
     &.works {
       position: relative;
+
+      @media screen and (max-width: 1000px) {
+        padding: 40px 20px;
+      }
     }
   }
 </style>

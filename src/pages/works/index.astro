@@ -114,6 +114,14 @@ const items = response.contents;
       grid-template-columns: repeat(4, calc(100% / 4 - 20px * 3 / 4));
       gap: 20px;
 
+      @media screen and (max-width: 1000px) and (min-width: 768px) {
+        grid-template-columns: repeat(3, calc(100% / 3 - 20px * 2 / 3));
+      }
+
+      @media screen and (max-width: 767px) {
+        grid-template-columns: repeat(2, calc(50% - 20px * 1 / 2));
+      }
+
       .list__item {
         display: flex;
         flex-direction: column;
